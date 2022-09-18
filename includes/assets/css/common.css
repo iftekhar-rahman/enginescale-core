@@ -1,0 +1,152 @@
+.d-block{
+    display: block;
+}
+.blog-thumb {
+    height: 240px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+.enginescale-blog-section {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 24px;
+    font-weight: 400;
+    color: #040415;
+}
+.enginescale-blog-section .single-item{
+    background-color: #fff;
+}
+.enginescale-blog-section .blog-content{
+    padding: 18px 20px 28px 20px;
+}
+.blog-meta p {
+    margin: 0 0 -3px;
+}
+.blog-meta strong {
+    font-weight: 600;
+}
+.enginescale-blog-section h2 {
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+.enginescale-blog-section h2, .enginescale-blog-section h2 a{
+    color: #040415;
+}
+.enginescale-blog-section .redmore{
+    color: #040415;
+}
+.enginescale-blog-section .redmore:hover, .enginescale-blog-section h2:hover{
+    color: #37B877;
+}
+.enginescale-blog-section .redmore img{
+    margin-left: 5px;
+}
+.blog-thumb-wrap{
+    overflow: hidden;   
+}
+.blog-thumb-wrap .blog-thumb{
+    transition: all .5s ease;  
+}
+.blog-thumb-wrap:hover .blog-thumb{
+    transform: scale(1.1);  
+}
+
+
+/* Blog Span CSS */
+.enginescale-blog-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.enginescale-blog-section .single-item:nth-child(1), .enginescale-blog-section .single-item:nth-child(5) {
+    grid-column: span 3;
+    display: flex;
+}
+.enginescale-blog-section .single-item:nth-child(1) .blog-thumb-wrap, 
+.enginescale-blog-section .single-item:nth-child(1) .blog-content,
+.enginescale-blog-section .single-item:nth-child(5) .blog-thumb-wrap,
+.enginescale-blog-section .single-item:nth-child(5) .blog-content
+  {
+    width: 50%;
+}
+.enginescale-blog-section .single-item:nth-child(1) .blog-thumb-wrap .blog-thumb,
+.enginescale-blog-section .single-item:nth-child(5) .blog-thumb-wrap .blog-thumb {
+    height: 480px;
+}
+.enginescale-blog-section .single-item:nth-child(1),
+.enginescale-blog-section .single-item:nth-child(5) {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: #fff;
+}
+.enginescale-blog-section .single-item:nth-child(1) h2,
+.enginescale-blog-section .single-item:nth-child(5) h2{
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: 600;
+}
+.enginescale-blog-section .single-item:nth-child(1) h2 .blog-meta,
+.enginescale-blog-section .single-item:nth-child(5) h2 .blog-meta{
+    font-size: 18px;    
+}
+.enginescale-blog-section .single-item:nth-child(1) .blog-content,
+.enginescale-blog-section .single-item:nth-child(5) .blog-content{
+    padding: 40px;
+}
+
+/* Responsive CSS */
+@media (max-width:768px) {
+   
+
+
+    
+}
+
+/* max-width:575px */
+@media (max-width:768px) {
+    .enginescale-blog-section {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .enginescale-blog-section .single-item:nth-child(1), .enginescale-blog-section .single-item:nth-child(5) {
+        grid-column: span 1;
+    }
+
+    .enginescale-blog-section .single-item:nth-child(1) .blog-thumb-wrap, 
+    .enginescale-blog-section .single-item:nth-child(1) .blog-content,
+    .enginescale-blog-section .single-item:nth-child(5) .blog-thumb-wrap,
+    .enginescale-blog-section .single-item:nth-child(5) .blog-content
+    {
+        width: 100%;
+    }
+    .enginescale-blog-section .single-item:nth-child(1) .blog-thumb-wrap .blog-thumb,
+    .enginescale-blog-section .single-item:nth-child(5) .blog-thumb-wrap .blog-thumb {
+        height: 240px;
+    }
+    .enginescale-blog-section .single-item:nth-child(1),
+    .enginescale-blog-section .single-item:nth-child(5) {
+        display: block;
+        /* align-items: center; */
+        height: auto;
+        background-color: #ddd;
+    }
+    .enginescale-blog-section .single-item:nth-child(1) h2,
+    .enginescale-blog-section .single-item:nth-child(5) h2{
+        font-size: 18px;
+        line-height: 28px;
+    }
+    .enginescale-blog-section .single-item:nth-child(1) h2 .blog-meta,
+    .enginescale-blog-section .single-item:nth-child(5) h2 .blog-meta{
+        font-size: 16x;    
+    }
+    .enginescale-blog-section .single-item:nth-child(1) .blog-content,
+    .enginescale-blog-section .single-item:nth-child(5) .blog-content{
+        padding: 18px 20px 28px 20px;
+    }
+
+
+
+    
+}
