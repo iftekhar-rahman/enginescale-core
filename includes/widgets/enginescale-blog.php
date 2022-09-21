@@ -210,6 +210,7 @@ class EngineScale_Blog extends \Elementor\Widget_Base {
 			'ignore_sticky_posts' => 1,
 			'orderby' => $settings['post_orderby'],
 			'order'   =>  $settings['post_order'],
+			'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
 		);
 
 		$the_query = new \WP_Query( $args );
@@ -237,34 +238,17 @@ class EngineScale_Blog extends \Elementor\Widget_Base {
 				<?php
 			}
 		}
+		wp_reset_postdata();
+	?>
+	</div>
 
-
-		?>
-		<div class="padination-box">
-			Pages: <?php// ele_child_pagination(); ?>
-		</div>
-		<?php
-
+	<!-- Pagination -->
+	<?php
 		echo "<div class='page-nav-container'>" . paginate_links(array(
 			'total' => $the_query->max_num_pages,
 			'prev_text' => __('Prev'),
 			'next_text' => __('Next')
 		)) . "</div>";
-		
-		wp_reset_postdata();
-	?>
-	</div>
-
-	<div class="padination-box">
-		Pages: <?php// ele_child_pagination(); ?>
-	</div>
-	<!-- Pagination -->
-	<?php
-		// echo "<div class='page-nav-container'>" . paginate_links(array(
-		// 	'total' => $the_query->max_num_pages,
-		// 	'prev_text' => __('Prev'),
-		// 	'next_text' => __('Next')
-		// )) . "</div>";
 	?>
 
 	<?php
