@@ -1,5 +1,5 @@
 <?php
-namespace EngineScale_Core_Addon;
+namespace ricci_core_addon;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -44,7 +44,7 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access private
 	 * @static
-	 * @var \EngineScale_Core_Addon\Plugin The single instance of the class.
+	 * @var \ricci_core_addon\Plugin The single instance of the class.
 	 */
 	private static $_instance = null;
 
@@ -56,7 +56,7 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 * @static
-	 * @return \EngineScale_Core_Addon\Plugin An instance of the class.
+	 * @return \ricci_core_addon\Plugin An instance of the class.
 	 */
 	public static function instance() {
 
@@ -203,6 +203,8 @@ final class Plugin {
 		add_action( 'elementor/elements/categories_registered', [$this, 'custom_categories' ]);
 
 		add_action( 'elementor/frontend/after_enqueue_styles', [$this, 'my_plugin_frontend_stylesheets'] );
+
+		add_action( 'elementor/frontend/after_register_scripts', [$this, 'my_plugin_frontend_scripts'] );
 		
 	}
 
@@ -211,8 +213,27 @@ final class Plugin {
 	public function my_plugin_frontend_stylesheets() {
 
 		wp_register_style( 'common-css', plugins_url( '/assets/css/common.css', __FILE__ ) );
+		// wp_register_style( 'bootstrap', plugins_url( '/assets/css/bootstrap.min.css', __FILE__ ) );
 
 		wp_enqueue_style( 'common-css' );
+		// wp_enqueue_style( 'bootstrap' );
+
+	}
+
+	// JS
+	public function my_plugin_frontend_scripts() {
+
+		// wp_register_script( 'bootstrap-js', plugins_url( '/assets/js/bootstrap.bundle.min.js', __FILE__ ), [ 'jquery' ] );
+		// wp_register_script( 'magnific-popup', plugins_url( '/assets/js/jquery.magnific-popup.min.js', __FILE__ ), [ 'jquery' ] );
+		// wp_register_script( 'imagesloaded', plugins_url( '/assets/js/imagesloaded.pkgd.min.js', __FILE__ ), [ 'jquery' ] );
+		// wp_register_script( 'main-js', plugins_url( '/assets/js/main.js', __FILE__ ), [ 'jquery' ] );
+		// wp_register_script( 'bootstrap-js', plugins_url( '/assets/js/bootstrap.bundle.min.js', __FILE__ ), [ 'jquery' ] );
+
+		// wp_enqueue_script( 'bootstrap-js', true );
+		// wp_enqueue_script( 'magnific-popup' );
+		// wp_enqueue_script( 'imagesloaded' );
+		// wp_enqueue_script( 'main-js', true );
+		// wp_enqueue_script( 'bootstrap-js', true );
 
 	}
 	
@@ -222,9 +243,9 @@ final class Plugin {
 	public function custom_categories( $elements_manager ) {
 
 		$elements_manager->add_category(
-			'enginescale',
+			'ricci',
 			[
-				'title' => esc_html__( 'EngineScale Core', 'enginescale-addon' ),
+				'title' => esc_html__( 'Ricci Core', 'ricci-core-addon' ),
 				'icon' => 'fa fa-plug',
 			]
 		);
@@ -243,23 +264,16 @@ final class Plugin {
 	 */
 	public function register_widgets( $widgets_manager ) {
 
-		require_once( __DIR__ . '/widgets/enginescale-blog.php' );
+		require_once( __DIR__ . '/widgets/ricci-blog.php' );
+		require_once( __DIR__ . '/widgets/ricci-blog-featured.php' );
+		require_once( __DIR__ . '/widgets/ricci-blog-filter.php' );
 
-		$widgets_manager->register( new \EngineScale_Core_Addon\EngineScale_Blog() );
+		$widgets_manager->register( new \ricci_core_addon\Ricci_Blog() );
+		$widgets_manager->register( new \ricci_core_addon\Ricci_Blog_Featured() );
+		$widgets_manager->register( new \ricci_core_addon\Ricci_Blog_Filter() );
 
 	}
 
 	
 
 }
-
-
-/**
- * Enqueue scripts and styles.
- */
-// function rrf_commerce_plugin_scripts() {
-// 	wp_enqueue_style( 'common-css', plugins_url('./assets/css/common.css', __FILE__));
-	
-// 	wp_enqueue_script( 'slick-js', plugins_url( './assets/js/slick.min.js', __FILE__ ), [ 'jquery' ] );
-// }
-// add_action( 'wp_enqueue_scripts', 'rrf_commerce_plugin_scripts' );

@@ -1,5 +1,5 @@
 <?php
-namespace EngineScale_Core_Addon;
+namespace ricci_core_addon;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class EngineScale_Blog extends \Elementor\Widget_Base {
+class Ricci_Blog_Filter extends \Elementor\Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -24,7 +24,7 @@ class EngineScale_Blog extends \Elementor\Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'enginescale-blog';
+		return 'ricci-blog-filter';
 	}
 
 	/**
@@ -37,7 +37,7 @@ class EngineScale_Blog extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'EngineScale Blog', 'enginescale-addon' );
+		return esc_html__( 'Ricci Blog Filter', 'ricci-core-addon' );
 	}
 
 	/**
@@ -105,7 +105,7 @@ class EngineScale_Blog extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => esc_html__( 'Content', 'enginescale-addon' ),
+				'label' => esc_html__( 'Content', 'ricci-core-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -173,7 +173,7 @@ class EngineScale_Blog extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_style',
 			[
-				'label' => esc_html__( 'Style', 'enginescale-addon' ),
+				'label' => esc_html__( 'Style', 'ricci-core-addon' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -196,60 +196,37 @@ class EngineScale_Blog extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		$content_limit = $settings['content_limit'];
-		$title_word_limit = $settings['title_word_limit'];
+		// $content_limit = $settings['content_limit'];
+		// $title_word_limit = $settings['title_word_limit'];
 	?>
-	<div class="enginescale-blog-section">
-	<?php
 
-		// The Query
-		$args = array(
-			'post_type' => 'post',
-			'posts_per_page'      => $settings['post_count'],
-			'post_status' => 'publish',
-			'ignore_sticky_posts' => 1,
-			'orderby' => $settings['post_orderby'],
-			'order'   =>  $settings['post_order'],
-			'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
-		);
 
-		$the_query = new \WP_Query( $args );
-		// The Loop
-		if ( $the_query->have_posts() ) {
-			while ( $the_query->have_posts() ) {
-				$the_query->the_post();
-				
-				?>
-				<article id="post-<?php the_ID();?>" <?php post_class( 'single-item' );?>>
-					<?php if( has_post_thumbnail(  ) ): ?>
-					<a href="<?php the_permalink(  ); ?>" class="d-block blog-thumb-wrap">
-						<div class="blog-thumb" style="background-image: url(<?php  the_post_thumbnail_url('full'); ?>);"></div>
-					</a>
-					<?php endif; ?>
-					<div class="blog-content">
-						<div class="blog-meta">
-							<p><strong><?php echo get_the_author(); ?></strong> | <?php echo get_the_date(); ?></p>
-						</div>
-						<a href="<?php the_permalink(  ); ?>" class="d-block"><h2><?php echo wp_trim_words( get_the_title(), $title_word_limit, '' ); ?></h2></a>
-						<p><?php echo wp_trim_words( get_the_content(), $content_limit, '...' ); ?></p>
-						<a href="<?php the_permalink(  ); ?>" class="redmore"> <?php echo esc_html__( 'Read more', 'hello-elementor' ) ?> <img src="<?php echo esc_attr__( 'http://localhost/hydra-boost/wp-content/uploads/2022/09/arrow.png', 'hello-elementor' ) ?>" alt=""></a>
-					</div>
-				</article>
-				<?php
-			}
-		}
-		wp_reset_postdata();
-	?>
-	</div>
-
-	<!-- Pagination -->
-	<?php
-		echo "<div class='page-nav-container'>" . paginate_links(array(
-			'total' => $the_query->max_num_pages,
-			'prev_text' => __('Prev'),
-			'next_text' => __('Next')
-		)) . "</div>";
-	?>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, deserunt dolore! Harum, est! Odio vitae esse reprehenderit praesentium expedita. Dolores.
+  </div>
+  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+	Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellendus ducimus obcaecati, rerum, aliquid numquam qui voluptatum laborum tempore natus facere accusamus vero ipsa quis quia rem voluptates ullam debitis.
+  </div>
+  <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur, itaque hic? Sequi, dolorum maiores vero debitis delectus quisquam possimus facilis!
+  </div>
+  <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur vero quos impedit, quod natus quasi, modi repellat dolorem quam minima, asperiores sapiente ex. Esse, voluptas ducimus deleniti ad aspernatur quos est, inventore repellendus asperiores voluptates dolorum sapiente quam at quis.</div>
+</div>
 
 	<?php
 
